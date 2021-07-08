@@ -76,6 +76,7 @@
     </dependencies>
 
     <build>
+        <finalName>b_proxy</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

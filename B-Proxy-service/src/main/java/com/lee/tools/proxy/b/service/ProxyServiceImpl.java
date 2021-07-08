@@ -24,6 +24,9 @@ public class ProxyServiceImpl implements ProxyService {
     public ProxyModel getOne() {
         ProxyDO proxy = proxyMapper.findOne();
         ProxyModel model = new ProxyModel();
+        if (proxy == null) {
+            return null;
+        }
         copier2.copy(proxy, model, null);
         return model;
     }

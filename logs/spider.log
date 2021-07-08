@@ -1,0 +1,50 @@
+2021-07-09-01:14:59.248 [main] INFO  c.l.tools.proxy.b.BProxyApplication - Starting BProxyApplication on PC202102211741F with PID 20396 (G:\source-code\git\gitee\jasonlee0529\b_proxy\start\target\classes started by Administrator in G:\source-code\git\gitee\jasonlee0529\b_proxy)
+2021-07-09-01:14:59.251 [main] INFO  c.l.tools.proxy.b.BProxyApplication - No active profile set, falling back to default profiles: default
+2021-07-09-01:15:00.438 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-07-09-01:15:00.456 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-07-09-01:15:00.466 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2021-07-09-01:15:00.467 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.39]
+2021-07-09-01:15:00.626 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-07-09-01:15:00.626 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1336 ms
+2021-07-09-01:15:01.214 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-07-09-01:15:03.846 [main] INFO  c.a.a.spring.ArthasConfiguration - Arthas agent start success.
+2021-07-09-01:15:03.963 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-07-09-01:15:03.982 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-09-01:15:03.985 [main] INFO  c.l.tools.proxy.b.BProxyApplication - Started BProxyApplication in 5.103 seconds (JVM running for 6.683)
+2021-07-09-01:15:14.228 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-09-01:15:14.228 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-07-09-01:15:14.235 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2021-07-09-01:15:14.277 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - defaultDataSource - Starting...
+2021-07-09-01:15:14.417 [http-nio-8080-exec-1] INFO  jdbc.connection - 1. Connection opened
+2021-07-09-01:15:14.421 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - defaultDataSource - Start completed.
+2021-07-09-01:15:14.452 [http-nio-8080-exec-1] INFO  jdbc.sqltiming - select id, `name`, `host`, port, `type`, valid_date, gmt_created, gmt_modified from proxy order 
+by valid_date desc limit 1 
+ {executed in 10 msec}
+2021-07-09-01:15:14.462 [http-nio-8080-exec-1] INFO  jdbc.resultsettable - 
+|---|-----|-----|-----|-----|-----------|------------|-------------|
+|id |name |host |port |type |valid_date |gmt_created |gmt_modified |
+|---|-----|-----|-----|-----|-----------|------------|-------------|
+|---|-----|-----|-----|-----|-----------|------------|-------------|
+
+2021-07-09-01:15:14.537 [defaultDataSource connection adder] INFO  jdbc.connection - 2. Connection opened
+2021-07-09-01:15:14.540 [defaultDataSource connection adder] INFO  jdbc.connection - 3. Connection opened
+2021-07-09-01:15:14.542 [defaultDataSource connection adder] INFO  jdbc.connection - 4. Connection opened
+2021-07-09-01:15:14.545 [defaultDataSource connection adder] INFO  jdbc.connection - 5. Connection opened
+2021-07-09-01:15:14.548 [defaultDataSource connection adder] INFO  jdbc.connection - 6. Connection opened
+2021-07-09-01:15:14.551 [defaultDataSource connection adder] INFO  jdbc.connection - 7. Connection opened
+2021-07-09-01:15:14.554 [defaultDataSource connection adder] INFO  jdbc.connection - 8. Connection opened
+2021-07-09-01:15:14.557 [defaultDataSource connection adder] INFO  jdbc.connection - 9. Connection opened
+2021-07-09-01:15:14.560 [defaultDataSource connection adder] INFO  jdbc.connection - 10. Connection opened
+2021-07-09-01:15:49.060 [Thread-12] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-07-09-01:15:49.061 [Thread-12] INFO  com.zaxxer.hikari.HikariDataSource - defaultDataSource - Shutdown initiated...
+2021-07-09-01:15:49.071 [defaultDataSource connection closer] INFO  jdbc.connection - 1. Connection closed
+2021-07-09-01:15:49.072 [defaultDataSource connection closer] INFO  jdbc.connection - 2. Connection closed
+2021-07-09-01:15:49.073 [defaultDataSource connection closer] INFO  jdbc.connection - 3. Connection closed
+2021-07-09-01:15:49.073 [defaultDataSource connection closer] INFO  jdbc.connection - 4. Connection closed
+2021-07-09-01:15:49.074 [defaultDataSource connection closer] INFO  jdbc.connection - 5. Connection closed
+2021-07-09-01:15:49.075 [defaultDataSource connection closer] INFO  jdbc.connection - 6. Connection closed
+2021-07-09-01:15:49.076 [defaultDataSource connection closer] INFO  jdbc.connection - 7. Connection closed
+2021-07-09-01:15:49.079 [defaultDataSource connection closer] INFO  jdbc.connection - 8. Connection closed
+2021-07-09-01:15:49.080 [defaultDataSource connection closer] INFO  jdbc.connection - 9. Connection closed
+2021-07-09-01:15:49.081 [defaultDataSource connection closer] INFO  jdbc.connection - 10. Connection closed
+2021-07-09-01:15:49.081 [Thread-12] INFO  com.zaxxer.hikari.HikariDataSource - defaultDataSource - Shutdown completed.
