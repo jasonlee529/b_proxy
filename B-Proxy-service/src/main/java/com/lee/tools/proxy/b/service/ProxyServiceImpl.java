@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
  */
@@ -16,6 +18,7 @@ public class ProxyServiceImpl implements ProxyService {
 
     @Autowired
     private ProxyMapper proxyMapper;
+
     private static final BeanCopier copier = BeanCopier.create(ProxyModel.class, ProxyDO.class, false);
     private static final BeanCopier copier2 = BeanCopier.create(ProxyDO.class, ProxyModel.class, false);
 
@@ -29,5 +32,14 @@ public class ProxyServiceImpl implements ProxyService {
         }
         copier2.copy(proxy, model, null);
         return model;
+    }
+
+    @Override
+    public void saveAll(List<ProxyModel> modelList) {
+        for (ProxyModel model : modelList) {
+            ProxyDO pd = new ProxyDO();
+            copier.copy(model, pd, null);
+            proxyMapper.insertOrUpdate(pd);
+        }
     }
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -20,7 +21,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProxyModel {
+public class ProxyModel implements Serializable {
     /**
      * ID
      */
@@ -37,6 +38,7 @@ public class ProxyModel {
     private String host;
 
     /**
+     * quality
      * 端口
      */
     private String port;
@@ -45,12 +47,32 @@ public class ProxyModel {
      * http/https
      */
     private String type;
+    /**
+     * 地域
+     */
+    private String region;
 
+    /**
+     * 匿名
+     */
+    private String anonymous;
+
+    /**
+     * 质量
+     */
+    private int quality;
+    /**
+     * 爬取来源
+     */
+    private String source;
     /**
      * 上次验证时间
      */
     private Date validDate;
-
+    /**
+     * 下一次验证时间
+     */
+    private Long nextVerifyTime;
     /**
      * 创建时间
      */
