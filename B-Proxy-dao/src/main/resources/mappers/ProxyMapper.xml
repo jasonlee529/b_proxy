@@ -1,463 +1,466 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lee.tools.proxy.b.dao.mapper.ProxyMapper">
-   <resultMap id="BaseResultMap" type="com.lee.tools.proxy.b.dao.dataobject.ProxyDO">
-    <!--@mbg.generated-->
-    <!--@Table proxy-->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="host" jdbcType="VARCHAR" property="host" />
-    <result column="port" jdbcType="VARCHAR" property="port" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="region" jdbcType="VARCHAR" property="region" />
-    <result column="anonymous" jdbcType="VARCHAR" property="anonymous" />
-    <result column="quality" jdbcType="INTEGER" property="quality" />
-    <result column="source" jdbcType="VARCHAR" property="source" />
-    <result column="valid_date" jdbcType="TIMESTAMP" property="validDate" />
-    <result column="next_verify_time" jdbcType="BIGINT" property="nextVerifyTime" />
-    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, `name`, `host`, port, `type`, region, anonymous, quality, `source`, valid_date,
-    next_verify_time, gmt_created, gmt_modified
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select
-    <include refid="Base_Column_List" />
-    from proxy
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
-    delete from proxy
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into proxy (`name`, `host`, port,
-      `type`, region, anonymous,
-      quality, `source`, valid_date,
-      next_verify_time, gmt_created, gmt_modified
-      )
-    values (#{name,jdbcType=VARCHAR}, #{host,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR},
-      #{type,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{anonymous,jdbcType=VARCHAR},
-      #{quality,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR}, #{validDate,jdbcType=TIMESTAMP},
-      #{nextVerifyTime,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into proxy
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="name != null">
-        `name`,
-      </if>
-      <if test="host != null">
-        `host`,
-      </if>
-      <if test="port != null">
-        port,
-      </if>
-      <if test="type != null">
-        `type`,
-      </if>
-      <if test="region != null">
-        region,
-      </if>
-      <if test="anonymous != null">
-        anonymous,
-      </if>
-      <if test="quality != null">
-        quality,
-      </if>
-      <if test="source != null">
-        `source`,
-      </if>
-      <if test="validDate != null">
-        valid_date,
-      </if>
-      <if test="nextVerifyTime != null">
-        next_verify_time,
-      </if>
-      <if test="gmtCreated != null">
-        gmt_created,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="host != null">
-        #{host,jdbcType=VARCHAR},
-      </if>
-      <if test="port != null">
-        #{port,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="region != null">
-        #{region,jdbcType=VARCHAR},
-      </if>
-      <if test="anonymous != null">
-        #{anonymous,jdbcType=VARCHAR},
-      </if>
-      <if test="quality != null">
-        #{quality,jdbcType=INTEGER},
-      </if>
-      <if test="source != null">
-        #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="validDate != null">
-        #{validDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nextVerifyTime != null">
-        #{nextVerifyTime,jdbcType=BIGINT},
-      </if>
-      <if test="gmtCreated != null">
-        #{gmtCreated,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO">
-    <!--@mbg.generated-->
-    update proxy
-    <set>
-      <if test="name != null">
-        `name` = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="host != null">
-        `host` = #{host,jdbcType=VARCHAR},
-      </if>
-      <if test="port != null">
-        port = #{port,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        `type` = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="region != null">
-        region = #{region,jdbcType=VARCHAR},
-      </if>
-      <if test="anonymous != null">
-        anonymous = #{anonymous,jdbcType=VARCHAR},
-      </if>
-      <if test="quality != null">
-        quality = #{quality,jdbcType=INTEGER},
-      </if>
-      <if test="source != null">
-        `source` = #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="validDate != null">
-        valid_date = #{validDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nextVerifyTime != null">
-        next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
-      </if>
-      <if test="gmtCreated != null">
-        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO">
-    <!--@mbg.generated-->
-    update proxy
-    set `name` = #{name,jdbcType=VARCHAR},
-      `host` = #{host,jdbcType=VARCHAR},
-      port = #{port,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=VARCHAR},
-      region = #{region,jdbcType=VARCHAR},
-      anonymous = #{anonymous,jdbcType=VARCHAR},
-      quality = #{quality,jdbcType=INTEGER},
-      `source` = #{source,jdbcType=VARCHAR},
-      valid_date = #{validDate,jdbcType=TIMESTAMP},
-      next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
-      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateBatch" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update proxy
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="`name` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+    <resultMap id="BaseResultMap" type="com.lee.tools.proxy.b.dao.dataobject.ProxyDO">
+        <!--@mbg.generated-->
+        <!--@Table proxy-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="host" jdbcType="VARCHAR" property="host"/>
+        <result column="port" jdbcType="VARCHAR" property="port"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="region" jdbcType="VARCHAR" property="region"/>
+        <result column="anonymous" jdbcType="VARCHAR" property="anonymous"/>
+        <result column="quality" jdbcType="INTEGER" property="quality"/>
+        <result column="source" jdbcType="VARCHAR" property="source"/>
+        <result column="valid_date" jdbcType="TIMESTAMP" property="validDate"/>
+        <result column="next_verify_time" jdbcType="BIGINT" property="nextVerifyTime"/>
+        <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, `host`, port, `type`, region, anonymous, quality, `source`, valid_date,
+        next_verify_time, gmt_created, gmt_modified
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from proxy
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from proxy
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into proxy (`name`, `host`, port,
+                           `type`, region, anonymous,
+                           quality, `source`, valid_date,
+                           next_verify_time, gmt_created, gmt_modified)
+        values (#{name,jdbcType=VARCHAR}, #{host,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR},
+                #{type,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{anonymous,jdbcType=VARCHAR},
+                #{quality,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR}, #{validDate,jdbcType=TIMESTAMP},
+                #{nextVerifyTime,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into proxy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="host != null">
+                `host`,
+            </if>
+            <if test="port != null">
+                port,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="region != null">
+                region,
+            </if>
+            <if test="anonymous != null">
+                anonymous,
+            </if>
+            <if test="quality != null">
+                quality,
+            </if>
+            <if test="source != null">
+                `source`,
+            </if>
+            <if test="validDate != null">
+                valid_date,
+            </if>
+            <if test="nextVerifyTime != null">
+                next_verify_time,
+            </if>
+            <if test="gmtCreated != null">
+                gmt_created,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="host != null">
+                #{host,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                #{port,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="region != null">
+                #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="anonymous != null">
+                #{anonymous,jdbcType=VARCHAR},
+            </if>
+            <if test="quality != null">
+                #{quality,jdbcType=INTEGER},
+            </if>
+            <if test="source != null">
+                #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="validDate != null">
+                #{validDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nextVerifyTime != null">
+                #{nextVerifyTime,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreated != null">
+                #{gmtCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO">
+        <!--@mbg.generated-->
+        update proxy
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="host != null">
+                `host` = #{host,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                port = #{port,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="region != null">
+                region = #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="anonymous != null">
+                anonymous = #{anonymous,jdbcType=VARCHAR},
+            </if>
+            <if test="quality != null">
+                quality = #{quality,jdbcType=INTEGER},
+            </if>
+            <if test="source != null">
+                `source` = #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="validDate != null">
+                valid_date = #{validDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nextVerifyTime != null">
+                next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreated != null">
+                gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO">
+        <!--@mbg.generated-->
+        update proxy
+        set `name`           = #{name,jdbcType=VARCHAR},
+            `host`           = #{host,jdbcType=VARCHAR},
+            port             = #{port,jdbcType=VARCHAR},
+            `type`           = #{type,jdbcType=VARCHAR},
+            region           = #{region,jdbcType=VARCHAR},
+            anonymous        = #{anonymous,jdbcType=VARCHAR},
+            quality          = #{quality,jdbcType=INTEGER},
+            `source`         = #{source,jdbcType=VARCHAR},
+            valid_date       = #{validDate,jdbcType=TIMESTAMP},
+            next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
+            gmt_created      = #{gmtCreated,jdbcType=TIMESTAMP},
+            gmt_modified     = #{gmtModified,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update proxy
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`host` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.host,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="port = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.port,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="region = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.region,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="anonymous = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.anonymous,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="quality = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.quality,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="`source` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.source,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="valid_date = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.validDate,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="next_verify_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.nextVerifyTime,jdbcType=BIGINT}
+                </foreach>
+            </trim>
+            <trim prefix="gmt_created = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.gmtCreated,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="gmt_modified = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.gmtModified,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
         </foreach>
-      </trim>
-      <trim prefix="`host` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.host,jdbcType=VARCHAR}
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into proxy
+                (`name`, `host`, port, `type`, region, anonymous, quality, `source`, valid_date,
+                 next_verify_time, gmt_created, gmt_modified)
+                values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.name,jdbcType=VARCHAR}, #{item.host,jdbcType=VARCHAR}, #{item.port,jdbcType=VARCHAR},
+             #{item.type,jdbcType=VARCHAR}, #{item.region,jdbcType=VARCHAR}, #{item.anonymous,jdbcType=VARCHAR},
+             #{item.quality,jdbcType=INTEGER}, #{item.source,jdbcType=VARCHAR}, #{item.validDate,jdbcType=TIMESTAMP},
+             #{item.nextVerifyTime,jdbcType=BIGINT}, #{item.gmtCreated,jdbcType=TIMESTAMP},
+             #{item.gmtModified,jdbcType=TIMESTAMP})
         </foreach>
-      </trim>
-      <trim prefix="port = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.port,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="`type` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="region = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.region,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="anonymous = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.anonymous,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="quality = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.quality,jdbcType=INTEGER}
-        </foreach>
-      </trim>
-      <trim prefix="`source` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.source,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="valid_date = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.validDate,jdbcType=TIMESTAMP}
-        </foreach>
-      </trim>
-      <trim prefix="next_verify_time = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.nextVerifyTime,jdbcType=BIGINT}
-        </foreach>
-      </trim>
-      <trim prefix="gmt_created = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.gmtCreated,jdbcType=TIMESTAMP}
-        </foreach>
-      </trim>
-      <trim prefix="gmt_modified = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.gmtModified,jdbcType=TIMESTAMP}
-        </foreach>
-      </trim>
-    </trim>
-    where id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.id,jdbcType=BIGINT}
-    </foreach>
-  </update>
-  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into proxy
-    (`name`, `host`, port, `type`, region, anonymous, quality, `source`, valid_date,
-      next_verify_time, gmt_created, gmt_modified)
-    values
-    <foreach collection="list" item="item" separator=",">
-      (#{item.name,jdbcType=VARCHAR}, #{item.host,jdbcType=VARCHAR}, #{item.port,jdbcType=VARCHAR},
-        #{item.type,jdbcType=VARCHAR}, #{item.region,jdbcType=VARCHAR}, #{item.anonymous,jdbcType=VARCHAR},
-        #{item.quality,jdbcType=INTEGER}, #{item.source,jdbcType=VARCHAR}, #{item.validDate,jdbcType=TIMESTAMP},
-        #{item.nextVerifyTime,jdbcType=BIGINT}, #{item.gmtCreated,jdbcType=TIMESTAMP},
-        #{item.gmtModified,jdbcType=TIMESTAMP})
-    </foreach>
-  </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into proxy
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      `name`,
-      `host`,
-      port,
-      `type`,
-      region,
-      anonymous,
-      quality,
-      `source`,
-      valid_date,
-      next_verify_time,
-      gmt_created,
-      gmt_modified,
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      #{name,jdbcType=VARCHAR},
-      #{host,jdbcType=VARCHAR},
-      #{port,jdbcType=VARCHAR},
-      #{type,jdbcType=VARCHAR},
-      #{region,jdbcType=VARCHAR},
-      #{anonymous,jdbcType=VARCHAR},
-      #{quality,jdbcType=INTEGER},
-      #{source,jdbcType=VARCHAR},
-      #{validDate,jdbcType=TIMESTAMP},
-      #{nextVerifyTime,jdbcType=BIGINT},
-      #{gmtCreated,jdbcType=TIMESTAMP},
-      #{gmtModified,jdbcType=TIMESTAMP},
-    </trim>
-    on duplicate key update
-    <trim suffixOverrides=",">
-      <if test="id != null">
-        id = #{id,jdbcType=BIGINT},
-      </if>
-      `name` = #{name,jdbcType=VARCHAR},
-      `host` = #{host,jdbcType=VARCHAR},
-      port = #{port,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=VARCHAR},
-      region = #{region,jdbcType=VARCHAR},
-      anonymous = #{anonymous,jdbcType=VARCHAR},
-      quality = #{quality,jdbcType=INTEGER},
-      `source` = #{source,jdbcType=VARCHAR},
-      valid_date = #{validDate,jdbcType=TIMESTAMP},
-      next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
-      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-    </trim>
-  </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into proxy
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        `name`,
-      </if>
-      <if test="host != null">
-        `host`,
-      </if>
-      <if test="port != null">
-        port,
-      </if>
-      <if test="type != null">
-        `type`,
-      </if>
-      <if test="region != null">
-        region,
-      </if>
-      <if test="anonymous != null">
-        anonymous,
-      </if>
-      <if test="quality != null">
-        quality,
-      </if>
-      <if test="source != null">
-        `source`,
-      </if>
-      <if test="validDate != null">
-        valid_date,
-      </if>
-      <if test="nextVerifyTime != null">
-        next_verify_time,
-      </if>
-      <if test="gmtCreated != null">
-        gmt_created,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="host != null">
-        #{host,jdbcType=VARCHAR},
-      </if>
-      <if test="port != null">
-        #{port,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="region != null">
-        #{region,jdbcType=VARCHAR},
-      </if>
-      <if test="anonymous != null">
-        #{anonymous,jdbcType=VARCHAR},
-      </if>
-      <if test="quality != null">
-        #{quality,jdbcType=INTEGER},
-      </if>
-      <if test="source != null">
-        #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="validDate != null">
-        #{validDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nextVerifyTime != null">
-        #{nextVerifyTime,jdbcType=BIGINT},
-      </if>
-      <if test="gmtCreated != null">
-        #{gmtCreated,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-    on duplicate key update
-    <trim suffixOverrides=",">
-      <if test="id != null">
-        id = #{id,jdbcType=BIGINT},
-      </if>
-      <if test="name != null">
-        `name` = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="host != null">
-        `host` = #{host,jdbcType=VARCHAR},
-      </if>
-      <if test="port != null">
-        port = #{port,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        `type` = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="region != null">
-        region = #{region,jdbcType=VARCHAR},
-      </if>
-      <if test="anonymous != null">
-        anonymous = #{anonymous,jdbcType=VARCHAR},
-      </if>
-      <if test="quality != null">
-        quality = #{quality,jdbcType=INTEGER},
-      </if>
-      <if test="source != null">
-        `source` = #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="validDate != null">
-        valid_date = #{validDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nextVerifyTime != null">
-        next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
-      </if>
-      <if test="gmtCreated != null">
-        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+            parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into proxy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            `name`,
+            `host`,
+            port,
+            `type`,
+            region,
+            anonymous,
+            quality,
+            `source`,
+            valid_date,
+            next_verify_time,
+            gmt_created,
+            gmt_modified,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{name,jdbcType=VARCHAR},
+            #{host,jdbcType=VARCHAR},
+            #{port,jdbcType=VARCHAR},
+            #{type,jdbcType=VARCHAR},
+            #{region,jdbcType=VARCHAR},
+            #{anonymous,jdbcType=VARCHAR},
+            #{quality,jdbcType=INTEGER},
+            #{source,jdbcType=VARCHAR},
+            #{validDate,jdbcType=TIMESTAMP},
+            #{nextVerifyTime,jdbcType=BIGINT},
+            #{gmtCreated,jdbcType=TIMESTAMP},
+            #{gmtModified,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            `name`           = #{name,jdbcType=VARCHAR},
+            `host`           = #{host,jdbcType=VARCHAR},
+            port             = #{port,jdbcType=VARCHAR},
+            `type`           = #{type,jdbcType=VARCHAR},
+            region           = #{region,jdbcType=VARCHAR},
+            anonymous        = #{anonymous,jdbcType=VARCHAR},
+            quality          = #{quality,jdbcType=INTEGER},
+            `source`         = #{source,jdbcType=VARCHAR},
+            valid_date       = #{validDate,jdbcType=TIMESTAMP},
+            next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
+            gmt_created      = #{gmtCreated,jdbcType=TIMESTAMP},
+            gmt_modified     = #{gmtModified,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into proxy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="host != null">
+                `host`,
+            </if>
+            <if test="port != null">
+                port,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="region != null">
+                region,
+            </if>
+            <if test="anonymous != null">
+                anonymous,
+            </if>
+            <if test="quality != null">
+                quality,
+            </if>
+            <if test="source != null">
+                `source`,
+            </if>
+            <if test="validDate != null">
+                valid_date,
+            </if>
+            <if test="nextVerifyTime != null">
+                next_verify_time,
+            </if>
+            <if test="gmtCreated != null">
+                gmt_created,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="host != null">
+                #{host,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                #{port,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="region != null">
+                #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="anonymous != null">
+                #{anonymous,jdbcType=VARCHAR},
+            </if>
+            <if test="quality != null">
+                #{quality,jdbcType=INTEGER},
+            </if>
+            <if test="source != null">
+                #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="validDate != null">
+                #{validDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nextVerifyTime != null">
+                #{nextVerifyTime,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreated != null">
+                #{gmtCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="host != null">
+                `host` = #{host,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                port = #{port,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="region != null">
+                region = #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="anonymous != null">
+                anonymous = #{anonymous,jdbcType=VARCHAR},
+            </if>
+            <if test="quality != null">
+                quality = #{quality,jdbcType=INTEGER},
+            </if>
+            <if test="source != null">
+                `source` = #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="validDate != null">
+                valid_date = #{validDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nextVerifyTime != null">
+                next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreated != null">
+                gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
     <select id="findOne" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -465,4 +468,17 @@
         order by valid_date desc
         limit 1
     </select>
+
+    <select id="findAllVerify" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from proxy
+        where next_verify_time &lt;= #{millis,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByHostPort">
+        delete
+        from proxy
+        where host = #{host,jdbcType=VARCHAR}
+          and port = #{port,jdbcType=VARCHAR}
+    </delete>
 </mapper>

@@ -1,7 +1,7 @@
 package com.lee.tools.proxy.b.manager.fetcher;
 
 
-import com.lee.tools.proxy.b.api.model.ProxyModel;
+import com.lee.tools.proxy.b.api.model.ProxyDTO;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -9,9 +9,9 @@ import java.util.concurrent.Callable;
 /**
  * 爬取远程Proxy的接口
  */
-public interface ProxyFetcher extends Callable<List<ProxyModel>> {
+public interface ProxyFetcher extends Callable<List<ProxyDTO>> {
 
-    public List<ProxyModel> fetch();
+    public List<ProxyDTO> fetch();
 
     public void setUrls(String[] urls);
 }

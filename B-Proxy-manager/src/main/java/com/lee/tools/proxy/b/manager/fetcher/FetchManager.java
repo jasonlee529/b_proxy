@@ -2,7 +2,8 @@ package com.lee.tools.proxy.b.manager.fetcher;
 
 import com.google.common.collect.Lists;
 import com.lee.tools.proxy.b.api.ProxyService;
-import com.lee.tools.proxy.b.api.model.ProxyModel;
+import com.lee.tools.proxy.b.api.model.ProxyDTO;
+import com.lee.tools.proxy.b.manager.ProxyValid;
 import com.lee.tools.proxy.b.manager.fetcher.impl.Six66ProxyFetcher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -34,8 +35,6 @@ public class FetchManager implements InitializingBean, Serializable {
     @Override
     public void afterPropertiesSet() throws Exception {
         list.add(new Six66ProxyFetcher());
-
-
     }
 
     public void fetch() throws BeansException {
@@ -43,11 +42,19 @@ public class FetchManager implements InitializingBean, Serializable {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    List<ProxyModel> modelList = proxyFetcher.fetch();
+                    List<ProxyDTO> modelList = proxyFetcher.fetch();
                     proxyService.saveAll(modelList);
                 }
             });
             executorService.submit(thread);
+        }
+    }
+
+    public void clean() throws BeansException {
+        List<ProxyDTO> list = proxyService.findAllVerify(System.currentTimeMillis());
+        for (ProxyDTO dto : list) {
+            if(!ProxyValid.valid(dto))
+                proxyService.deleteByHostPort(dto);
         }
     }
 }

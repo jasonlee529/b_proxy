@@ -1,7 +1,7 @@
 package com.lee.tools.proxy.b.manager.fetcher.impl;
 
 import com.google.common.collect.Lists;
-import com.lee.tools.proxy.b.api.model.ProxyModel;
+import com.lee.tools.proxy.b.api.model.ProxyDTO;
 import com.lee.tools.proxy.b.manager.fetcher.ProxyFetcher;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,13 +37,13 @@ public class Six66ProxyFetcher implements ProxyFetcher {
     }
 
     @Override
-    public List<ProxyModel> call() throws Exception {
+    public List<ProxyDTO> call() throws Exception {
         return fetch();
     }
 
     @Override
-    public List<ProxyModel> fetch() {
-        List<ProxyModel> models = Lists.newArrayList();
+    public List<ProxyDTO> fetch() {
+        List<ProxyDTO> models = Lists.newArrayList();
         for (int i = 1; i < 34; i++) {
             String url = String.format("http://www.66ip.cn/areaindex_%d/1.html", i);
             int count = 0;
@@ -52,7 +52,7 @@ public class Six66ProxyFetcher implements ProxyFetcher {
                 doc = Jsoup.connect(url).get();
                 Elements trs = doc.select("#footer").select("tr:gt(0)");
                 for (Element tr : trs) {
-                    models.add(ProxyModel.builder()
+                    models.add(ProxyDTO.builder()
                             .host(tr.select("td:eq(0)").text())
                             .port(tr.select("td:eq(1)").text())
                             .region(tr.select("td:eq(2)").text())

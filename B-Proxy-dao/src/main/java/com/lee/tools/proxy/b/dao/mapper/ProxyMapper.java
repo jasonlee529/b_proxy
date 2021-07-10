@@ -30,4 +30,8 @@ public interface ProxyMapper {
 
 
     int insertOrUpdate(ProxyDO proxyDO);
+
+    List<ProxyDO> findAllVerify(@Param("millis") Long millis);
+
+    void deleteByHostPort(@Param("host") String host, @Param("port") String port);
 }

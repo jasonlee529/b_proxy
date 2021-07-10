@@ -1,7 +1,7 @@
 package com.lee.tools.proxy.b.api;
 
 
-import com.lee.tools.proxy.b.api.model.ProxyModel;
+import com.lee.tools.proxy.b.api.model.ProxyDTO;
 
 import java.util.List;
 
@@ -11,7 +11,11 @@ import java.util.List;
 public interface ProxyService {
 
 
-    ProxyModel getOne();
+    ProxyDTO getOne();
 
-    void saveAll(List<ProxyModel> modelList);
+    void saveAll(List<ProxyDTO> modelList);
+
+    List<ProxyDTO> findAllVerify(Long millis);
+
+    void deleteByHostPort(ProxyDTO dto);
 }

@@ -1,7 +1,8 @@
 package com.lee.tools.proxy.b.service;
 
+import com.google.common.collect.Lists;
 import com.lee.tools.proxy.b.api.ProxyService;
-import com.lee.tools.proxy.b.api.model.ProxyModel;
+import com.lee.tools.proxy.b.api.model.ProxyDTO;
 import com.lee.tools.proxy.b.dao.dataobject.ProxyDO;
 import com.lee.tools.proxy.b.dao.mapper.ProxyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,14 @@ public class ProxyServiceImpl implements ProxyService {
     @Autowired
     private ProxyMapper proxyMapper;
 
-    private static final BeanCopier copier = BeanCopier.create(ProxyModel.class, ProxyDO.class, false);
-    private static final BeanCopier copier2 = BeanCopier.create(ProxyDO.class, ProxyModel.class, false);
+    private static final BeanCopier copier = BeanCopier.create(ProxyDTO.class, ProxyDO.class, false);
+    private static final BeanCopier copier2 = BeanCopier.create(ProxyDO.class, ProxyDTO.class, false);
 
 
     @Override
-    public ProxyModel getOne() {
+    public ProxyDTO getOne() {
         ProxyDO proxy = proxyMapper.findOne();
-        ProxyModel model = new ProxyModel();
+        ProxyDTO model = new ProxyDTO();
         if (proxy == null) {
             return null;
         }
@@ -35,11 +36,28 @@ public class ProxyServiceImpl implements ProxyService {
     }
 
     @Override
-    public void saveAll(List<ProxyModel> modelList) {
-        for (ProxyModel model : modelList) {
+    public void saveAll(List<ProxyDTO> modelList) {
+        for (ProxyDTO model : modelList) {
             ProxyDO pd = new ProxyDO();
             copier.copy(model, pd, null);
             proxyMapper.insertOrUpdate(pd);
         }
+    }
+
+    @Override
+    public List<ProxyDTO> findAllVerify(Long millis) {
+        List<ProxyDO> list = proxyMapper.findAllVerify(millis);
+        List<ProxyDTO> res = Lists.newArrayList();
+        for (ProxyDO pd : list) {
+            ProxyDTO pdt = new ProxyDTO();
+            copier2.copy(pd, pdt, null);
+            res.add(pdt);
+        }
+        return res;
+    }
+
+    @Override
+    public void deleteByHostPort(ProxyDTO dto) {
+        proxyMapper.deleteByHostPort(dto.getHost(), dto.getPort());
     }
 }

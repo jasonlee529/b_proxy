@@ -1,7 +1,7 @@
 package com.lee.tools.proxy.b.web;
 
 import com.lee.tools.proxy.b.api.ProxyService;
-import com.lee.tools.proxy.b.api.model.ProxyModel;
+import com.lee.tools.proxy.b.api.model.ProxyDTO;
 import com.lee.tools.proxy.b.web.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class Proxyontroller {
     private ProxyService proxyService;
 
     @GetMapping("getOne")
-    public R<ProxyModel> get() {
+    public R<ProxyDTO> get() {
         return R.ok(proxyService.getOne());
     }
 
