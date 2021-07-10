@@ -8,6 +8,7 @@ import com.lee.tools.proxy.b.dao.mapper.ProxyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -38,9 +39,12 @@ public class ProxyServiceImpl implements ProxyService {
     @Override
     public void saveAll(List<ProxyDTO> modelList) {
         for (ProxyDTO model : modelList) {
-            ProxyDO pd = new ProxyDO();
-            copier.copy(model, pd, null);
-            proxyMapper.insertOrUpdate(pd);
+            List<ProxyDO> pds = proxyMapper.findByHostPort(model.getHost(), model.getPort());
+            if (CollectionUtils.isEmpty(pds)) {
+                ProxyDO pd = new ProxyDO();
+                copier.copy(model, pd, null);
+                proxyMapper.insertOrUpdate(pd);
+            }
         }
     }
 
@@ -59,5 +63,21 @@ public class ProxyServiceImpl implements ProxyService {
     @Override
     public void deleteByHostPort(ProxyDTO dto) {
         proxyMapper.deleteByHostPort(dto.getHost(), dto.getPort());
+    }
+
+    @Override
+    public boolean degrade(String host, String port) {
+        List<ProxyDO> pds = proxyMapper.findByHostPort(host, port);
+        if (!CollectionUtils.isEmpty(pds)) {
+            ProxyDO pd = pds.get(0);
+            if (pd.getQuality().intValue() <= 1) {
+                proxyMapper.deleteByHostPort(host, port);
+            } else {
+                pd.setQuality(pd.getQuality() - 1);
+                pd.setNextVerifyTime(System.currentTimeMillis() + 1000 * 60 * 60 * 6);
+                proxyMapper.updateByPrimaryKeySelective(pd);
+            }
+        }
+        return true;
     }
 }

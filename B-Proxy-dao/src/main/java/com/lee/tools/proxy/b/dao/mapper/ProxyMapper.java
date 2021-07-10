@@ -3,7 +3,6 @@ package com.lee.tools.proxy.b.dao.mapper;
 import com.lee.tools.proxy.b.dao.dataobject.ProxyDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -25,13 +24,13 @@ public interface ProxyMapper {
 
     int batchInsert(@Param("list") List<ProxyDO> list);
 
-
     ProxyDO findOne();
-
 
     int insertOrUpdate(ProxyDO proxyDO);
 
     List<ProxyDO> findAllVerify(@Param("millis") Long millis);
 
     void deleteByHostPort(@Param("host") String host, @Param("port") String port);
+
+    List<ProxyDO> findByHostPort(@Param("host") String host, @Param("port") String port);
 }

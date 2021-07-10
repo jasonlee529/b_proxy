@@ -1,6 +1,6 @@
 package com.lee.tools.proxy.b.manager.quartz;
 
-import com.lee.tools.proxy.b.manager.fetcher.FetchManager;
+import com.lee.tools.proxy.b.manager.fetcher.ProxyManager;
 import com.lee.tools.proxy.b.manager.quartz.job.CleanJob;
 import com.lee.tools.proxy.b.manager.quartz.job.FetchJob;
 import lombok.extern.slf4j.Slf4j;
@@ -22,18 +22,18 @@ import java.util.Map;
 @Service
 public class FetchTrigger implements InitializingBean {
     @Autowired
-    private FetchManager fetchManager;
+    private ProxyManager proxyManager;
     @Autowired
     private QuartzService quartzService;
 
     @Override
     public void afterPropertiesSet() throws Exception {
         Map context = new HashMap<>();
-        context.put("fetchManager", fetchManager);
+        context.put("fetchManager", proxyManager);
         Map detail = new HashMap<>();
         detail.put("name", "fetchProxy");
-        quartzService.addJob(FetchJob.class, "fetch", "proxy", "0 */10 * * * ?", context, detail);
+        quartzService.addJob(FetchJob.class, "fetch", "proxy", "0 */30 * * * ?", context, detail);
         detail.put("name", "cleanProxy");
-        quartzService.addJob(CleanJob.class, "clean", "proxy", "0 */3 * * * ?", context, detail);
+        quartzService.addJob(CleanJob.class, "clean", "proxy", "0 */10 * * * ?", context, detail);
     }
 }

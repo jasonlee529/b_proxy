@@ -18,4 +18,6 @@ public interface ProxyService {
     List<ProxyDTO> findAllVerify(Long millis);
 
     void deleteByHostPort(ProxyDTO dto);
+
+    boolean degrade(String host, String port);
 }

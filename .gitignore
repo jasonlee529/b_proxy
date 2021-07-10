@@ -18,6 +18,10 @@ target/
 *.iws
 *.iml
 *.ipr
+logs
+*/logs
+.travis
+arthas-output
 
 ### NetBeans ###
 /nbproject/private/

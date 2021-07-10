@@ -1,6 +1,6 @@
 package com.lee.tools.proxy.b.manager.quartz.job;
 
-import com.lee.tools.proxy.b.manager.fetcher.FetchManager;
+import com.lee.tools.proxy.b.manager.fetcher.ProxyManager;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobDataMap;
@@ -17,18 +17,18 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
  */
 @Slf4j
 public class FetchJob extends QuartzJobBean {
-    private FetchManager fetchManager;
+    private ProxyManager proxyManager;
 
-    public void setFetchManager(FetchManager fetchManager) {
-        this.fetchManager = fetchManager;
+    public void setProxyManager(ProxyManager proxyManager) {
+        this.proxyManager = proxyManager;
     }
 
     @SneakyThrows
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         JobDataMap jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();
-        fetchManager = (FetchManager) jobExecutionContext.getScheduler().getContext().get("fetchManager");
-        fetchManager.fetch();
+        proxyManager = (ProxyManager) jobExecutionContext.getScheduler().getContext().get("fetchManager");
+        proxyManager.fetch();
         log.info("------springboot quartz FetchJob: ###############" + jobExecutionContext.getTrigger());
 
     }

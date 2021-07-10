@@ -1,0 +1,18 @@
+language: java
+jdk:
+  - openjdk8
+addons:
+  ssh_known_hosts:
+    - 116.196.86.186
+script: mvnw clean package -Dmaven.test.skip=true -DskipTests
+after_success:
+  - scp -o stricthostkeychecking=no -r start/target/b_proxy.jar web@116.196.86.186:/home/web/b_proxy -P 3222
+  - scp -o stricthostkeychecking=no -r restart.sh web@116.196.86.186:/home/web/b_proxy -P 3222
+  - ssh web@116.196.86.186 -P 3222 -o stricthostkeychecking=no "sh /home/web/b_proxy/restart.sh aliyun 8092"
+branches:
+  only:
+    - main
+before_install:
+  - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv
+    -in id_rsa.enc -out id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa

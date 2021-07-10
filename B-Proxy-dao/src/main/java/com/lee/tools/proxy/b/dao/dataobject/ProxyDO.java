@@ -39,7 +39,7 @@ public class ProxyDO implements Serializable {
     /**
      * http/https
      */
-    private String type;
+    private String type = "http";
 
     /**
      * 地域
@@ -54,7 +54,7 @@ public class ProxyDO implements Serializable {
     /**
      * 质量
      */
-    private Integer quality;
+    private Integer quality = 10;
 
     /**
      * 爬取来源

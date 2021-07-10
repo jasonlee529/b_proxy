@@ -42,11 +42,11 @@
         insert into proxy (`name`, `host`, port,
                            `type`, region, anonymous,
                            quality, `source`, valid_date,
-                           next_verify_time, gmt_created, gmt_modified)
+                           next_verify_time)
         values (#{name,jdbcType=VARCHAR}, #{host,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR},
                 #{type,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{anonymous,jdbcType=VARCHAR},
                 #{quality,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR}, #{validDate,jdbcType=TIMESTAMP},
-                #{nextVerifyTime,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+                #{nextVerifyTime,jdbcType=BIGINT})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id"
             parameterType="com.lee.tools.proxy.b.dao.dataobject.ProxyDO" useGeneratedKeys="true">
@@ -83,12 +83,6 @@
             <if test="nextVerifyTime != null">
                 next_verify_time,
             </if>
-            <if test="gmtCreated != null">
-                gmt_created,
-            </if>
-            <if test="gmtModified != null">
-                gmt_modified,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null">
@@ -120,12 +114,6 @@
             </if>
             <if test="nextVerifyTime != null">
                 #{nextVerifyTime,jdbcType=BIGINT},
-            </if>
-            <if test="gmtCreated != null">
-                #{gmtCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="gmtModified != null">
-                #{gmtModified,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -163,12 +151,6 @@
             <if test="nextVerifyTime != null">
                 next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
             </if>
-            <if test="gmtCreated != null">
-                gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="gmtModified != null">
-                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-            </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
@@ -184,9 +166,7 @@
             quality          = #{quality,jdbcType=INTEGER},
             `source`         = #{source,jdbcType=VARCHAR},
             valid_date       = #{validDate,jdbcType=TIMESTAMP},
-            next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
-            gmt_created      = #{gmtCreated,jdbcType=TIMESTAMP},
-            gmt_modified     = #{gmtModified,jdbcType=TIMESTAMP}
+            next_verify_time = #{nextVerifyTime,jdbcType=BIGINT}
         where id = #{id,jdbcType=BIGINT}
     </update>
     <update id="updateBatch" parameterType="java.util.List">
@@ -243,16 +223,6 @@
                     when id = #{item.id,jdbcType=BIGINT} then #{item.nextVerifyTime,jdbcType=BIGINT}
                 </foreach>
             </trim>
-            <trim prefix="gmt_created = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.gmtCreated,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
-            <trim prefix="gmt_modified = case" suffix="end,">
-                <foreach collection="list" index="index" item="item">
-                    when id = #{item.id,jdbcType=BIGINT} then #{item.gmtModified,jdbcType=TIMESTAMP}
-                </foreach>
-            </trim>
         </trim>
         where id in
         <foreach close=")" collection="list" item="item" open="(" separator=", ">
@@ -263,14 +233,13 @@
         <!--@mbg.generated-->
         insert into proxy
                 (`name`, `host`, port, `type`, region, anonymous, quality, `source`, valid_date,
-                 next_verify_time, gmt_created, gmt_modified)
+                 next_verify_time)
                 values
         <foreach collection="list" item="item" separator=",">
             (#{item.name,jdbcType=VARCHAR}, #{item.host,jdbcType=VARCHAR}, #{item.port,jdbcType=VARCHAR},
              #{item.type,jdbcType=VARCHAR}, #{item.region,jdbcType=VARCHAR}, #{item.anonymous,jdbcType=VARCHAR},
              #{item.quality,jdbcType=INTEGER}, #{item.source,jdbcType=VARCHAR}, #{item.validDate,jdbcType=TIMESTAMP},
-             #{item.nextVerifyTime,jdbcType=BIGINT}, #{item.gmtCreated,jdbcType=TIMESTAMP},
-             #{item.gmtModified,jdbcType=TIMESTAMP})
+             #{item.nextVerifyTime,jdbcType=BIGINT})
         </foreach>
     </insert>
     <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
@@ -327,8 +296,6 @@
             `source`         = #{source,jdbcType=VARCHAR},
             valid_date       = #{validDate,jdbcType=TIMESTAMP},
             next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
-            gmt_created      = #{gmtCreated,jdbcType=TIMESTAMP},
-            gmt_modified     = #{gmtModified,jdbcType=TIMESTAMP},
         </trim>
     </insert>
     <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
@@ -369,12 +336,6 @@
             <if test="nextVerifyTime != null">
                 next_verify_time,
             </if>
-            <if test="gmtCreated != null">
-                gmt_created,
-            </if>
-            <if test="gmtModified != null">
-                gmt_modified,
-            </if>
         </trim>
         values
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -410,12 +371,6 @@
             </if>
             <if test="nextVerifyTime != null">
                 #{nextVerifyTime,jdbcType=BIGINT},
-            </if>
-            <if test="gmtCreated != null">
-                #{gmtCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="gmtModified != null">
-                #{gmtModified,jdbcType=TIMESTAMP},
             </if>
         </trim>
         on duplicate key update
@@ -453,12 +408,6 @@
             <if test="nextVerifyTime != null">
                 next_verify_time = #{nextVerifyTime,jdbcType=BIGINT},
             </if>
-            <if test="gmtCreated != null">
-                gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
-            </if>
-            <if test="gmtModified != null">
-                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-            </if>
         </trim>
     </insert>
     <select id="findOne" resultMap="BaseResultMap">
@@ -481,4 +430,11 @@
         where host = #{host,jdbcType=VARCHAR}
           and port = #{port,jdbcType=VARCHAR}
     </delete>
+    <select id="findByHostPort" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from proxy
+        where host = #{host,jdbcType=VARCHAR}
+          and port = #{port,jdbcType=VARCHAR}
+    </select>
 </mapper>
