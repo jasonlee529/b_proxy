@@ -414,7 +414,7 @@
         select
         <include refid="Base_Column_List"/>
         from proxy
-        order by valid_date desc
+        order by RAND() desc
         limit 1
     </select>
 
