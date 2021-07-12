@@ -1,4 +1,4 @@
-# 工程简介
+# 工程简介[![Build Status](https://travis-ci.com/jasonlee529/b_proxy.svg?branch=master)](https://travis-ci.com/jasonlee529/b_proxy)
 
 
 
