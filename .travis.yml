@@ -4,7 +4,7 @@ jdk:
 addons:
   ssh_known_hosts:
   - 116.196.86.186
-script: ./mvnw clean package -Dmaven.test.skip=true -DskipTests
+#script: ./mvnw clean package -Dmaven.test.skip=true -DskipTests
 after_success:
 - scp -o stricthostkeychecking=no -r ./start/target/b_proxy.jar web@116.196.86.186:/home/web/b_proxy/
   -P 3222
