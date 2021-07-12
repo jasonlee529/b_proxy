@@ -4,7 +4,7 @@ jdk:
 addons:
   ssh_known_hosts:
   - 116.196.86.186
-script: mvnw clean package -Dmaven.test.skip=true -DskipTests
+script: ./mvnw clean package -Dmaven.test.skip=true -DskipTests
 after_success:
 - scp -o stricthostkeychecking=no -r start/target/b_proxy.jar web@116.196.86.186:/home/web/b_proxy
   -P 3222
@@ -16,7 +16,9 @@ branches:
   only:
   - master
 before_install:
-- openssl aes-256-cbc -K $encrypted_558657bceb79_key -iv $encrypted_558657bceb79_iv
-  -in id_rsa.pub.enc -out ~/.ssh/id_rsa.pub -d
+- openssl aes-256-cbc -K $encrypted_9b2d7e19d83c_key -iv $encrypted_9b2d7e19d83c_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod a+x ~/.ssh/id_rsa 
 - echo -e "Host 116.196.86.186\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 - chmod a+x ./mvnw
+
