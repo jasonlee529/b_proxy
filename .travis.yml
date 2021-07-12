@@ -8,6 +8,8 @@ install:
  - ./mvnw clean
 script: ./mvnw clean package -Dmaven.test.skip=true -DskipTests
 after_success:
+- ll
+- pwd
 - scp -o stricthostkeychecking=no -r ./start/target/b_proxy.jar web@116.196.86.186:/home/web/b_proxy/
   -P 3222
 - scp -o stricthostkeychecking=no -r ./restart.sh web@116.196.86.186:/home/web/b_proxy/
