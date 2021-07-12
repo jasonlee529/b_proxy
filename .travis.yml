@@ -3,7 +3,7 @@ jdk:
 - openjdk8
 addons:
   ssh_known_hosts:
-  - 116.196.86.186
+  - 116.196.86.186:3222
 install:
  - ./mvnw clean
 script: ./mvnw clean package -Dmaven.test.skip=true -DskipTests
