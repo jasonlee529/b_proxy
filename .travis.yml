@@ -10,7 +10,7 @@ after_success:
   -P 3222
 - scp -o stricthostkeychecking=no -r ./restart.sh web@116.196.86.186:/home/web/b_proxy/
   -P 3222
-- ssh web@116.196.86.186 -P 3222 -o stricthostkeychecking=no "sh /home/web/b_proxy/restart.sh
+- ssh web@116.196.86.186 -p 3222 -o stricthostkeychecking=no "sh /home/web/b_proxy/restart.sh
   aliyun 8092"
 branches:
   only:
