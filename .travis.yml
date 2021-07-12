@@ -19,3 +19,4 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_558657bceb79_key -iv $encrypted_558657bceb79_iv
   -in id_rsa.pub.enc -out ~/.ssh/id_rsa.pub -d
 - echo -e "Host 116.196.86.186\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- chmod a+x ./mvnw
