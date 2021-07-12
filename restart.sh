@@ -15,5 +15,5 @@ port=30010
 if [ ! -z "$2" ] ; then
     port=$2
 fi
-
+echo $port
 java -jar -Dspring.profiles.active=$profile -Dserver.port=$port $jarFile  > log.file 2>&1 &
