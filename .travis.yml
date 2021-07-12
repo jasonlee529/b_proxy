@@ -11,10 +11,10 @@ after_success:
 - ls -al
 - cat ~/.ssh/config
 - pwd
-- scp -P 3222 -o StrictHostKeyChecking=no 116.196.86.186 -r ./start/target/b_proxy.jar web@116.196.86.186:/home/web/b_proxy/
+- scp -P 3222 -o StrictHostKeyChecking=no  -r ./start/target/b_proxy.jar web@116.196.86.186:/home/web/b_proxy/
 
-- scp -P 3222 -o StrictHostKeyChecking=no  116.196.86.186  -r ./restart.sh web@116.196.86.186:/home/web/b_proxy/
-- ssh web@116.196.86.186 -p 3222 -o tStrictHostKeyChecking=no  116.196.86.186  "sh /home/web/b_proxy/restart.sh
+- scp -P 3222 -o StrictHostKeyChecking=no   -r ./restart.sh web@116.196.86.186:/home/web/b_proxy/
+- ssh web@116.196.86.186 -p 3222 -o tStrictHostKeyChecking=no "sh /home/web/b_proxy/restart.sh
   aliyun 8092"
 branches:
   only:
