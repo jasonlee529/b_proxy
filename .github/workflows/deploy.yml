@@ -35,6 +35,7 @@ jobs:
         port: ${{ secrets.DC_PORT }}
         source: "start/target/b_proxy.jar,restart.sh"
         target: "/home/web/b_proxy/github/"
+        strip_components: 2
     - name: ssh pipelines
       uses: cross-the-world/ssh-pipeline@master
       env:
