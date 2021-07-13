@@ -27,16 +27,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: copy file via ssh password
+    - name: copy jar file via ssh password
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.DC_HOST }}
         username: ${{ secrets.DC_USERNAME }}
         password: ${{ secrets.DC_PASSWORD }}
         port: ${{ secrets.DC_PORT }}
-        source: "start/target/b_proxy.jar,restart.sh"
+        source: "start/target/b_proxy.jar"
         target: "/home/web/b_proxy/github/"
         strip_components: 2
+    - name: copy sh file via ssh password
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.DC_HOST }}
+        username: ${{ secrets.DC_USERNAME }}
+        password: ${{ secrets.DC_PASSWORD }}
+        port: ${{ secrets.DC_PORT }}
+        source: "restart.sh"
+        target: "/home/web/b_proxy/github/"
     - name: ssh pipelines
       uses: cross-the-world/ssh-pipeline@master
       env:
