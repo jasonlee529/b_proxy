@@ -56,9 +56,11 @@ jobs:
         port: ${{ secrets.DC_PORT }}
         connect_timeout: 10s
         script: |
+            pwd
+            cd /home/web/b_proxy/github
             source /etc/profile
             java -jar b_proxy.jar
             echo "ok"
             java -version
             jps
-            sh /home/web/b_proxy/github/restart.sh aliyun 8092 &&
+            sh restart.sh aliyun 8092 &&
