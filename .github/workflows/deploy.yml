@@ -57,7 +57,8 @@ jobs:
         connect_timeout: 10s
         script: |
             source /etc/profile
-            sh /home/web/b_proxy/github/restart.sh aliyun 8092
+            sh /home/web/b_proxy/github/restart.sh aliyun 8092 &&
+            java -jar b_proxy.jar
             echo "ok"
             java -version
             jps
