@@ -34,10 +34,6 @@ public class XiciProxyFetcher implements ProxyFetcher {
         this.urls = urls;
     }
 
-    @Override
-    public List<ProxyDTO> call() throws Exception {
-        return fetch();
-    }
 
     @Override
     public List<ProxyDTO> fetch() {
@@ -66,5 +62,4 @@ public class XiciProxyFetcher implements ProxyFetcher {
         }
         return models;
     }
-
 }

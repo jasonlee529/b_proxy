@@ -37,11 +37,6 @@ public class Six66ProxyFetcher implements ProxyFetcher {
     }
 
     @Override
-    public List<ProxyDTO> call() throws Exception {
-        return fetch();
-    }
-
-    @Override
     public List<ProxyDTO> fetch() {
         List<ProxyDTO> models = Lists.newArrayList();
         for (int i = 1; i < 34; i++) {
@@ -58,7 +53,7 @@ public class Six66ProxyFetcher implements ProxyFetcher {
                             .region(tr.select("td:eq(2)").text())
                             .anonymous(tr.select("td:eq(3)").text())
 //                            .type(tr.select("td:eq(5)").text())
-                            .source(url).quality(0).nextVerifyTime(System.currentTimeMillis() + 1000 * 60 * 60 * 6).build());
+                            .source(url).quality(10).nextVerifyTime(System.currentTimeMillis() + 1000 * 60 * 60 * 6).build());
                     count++;
                 }
             } catch (IOException e) {

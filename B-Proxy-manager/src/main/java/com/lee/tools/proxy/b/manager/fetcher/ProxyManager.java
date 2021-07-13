@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.lee.tools.proxy.b.api.ProxyService;
 import com.lee.tools.proxy.b.api.model.ProxyDTO;
 import com.lee.tools.proxy.b.manager.ProxyValid;
+import com.lee.tools.proxy.b.manager.fetcher.impl.Ip3366ProxyFetcher;
 import com.lee.tools.proxy.b.manager.fetcher.impl.Six66ProxyFetcher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -35,6 +36,7 @@ public class ProxyManager implements InitializingBean, Serializable {
     @Override
     public void afterPropertiesSet() throws Exception {
         list.add(new Six66ProxyFetcher());
+        list.add(new Ip3366ProxyFetcher());
     }
 
     public void fetch() throws BeansException {

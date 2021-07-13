@@ -9,9 +9,7 @@ import java.util.concurrent.Callable;
 /**
  * 爬取远程Proxy的接口
  */
-public interface ProxyFetcher extends Callable<List<ProxyDTO>> {
+public interface ProxyFetcher {
 
     public List<ProxyDTO> fetch();
-
-    public void setUrls(String[] urls);
 }
