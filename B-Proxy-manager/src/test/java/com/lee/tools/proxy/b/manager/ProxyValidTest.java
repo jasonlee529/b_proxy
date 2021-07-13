@@ -1,6 +1,7 @@
 package com.lee.tools.proxy.b.manager;
 
 import com.lee.tools.proxy.b.api.model.ProxyDTO;
+import com.lee.tools.proxy.b.manager.ProxyValid;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
