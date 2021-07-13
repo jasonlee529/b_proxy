@@ -28,12 +28,13 @@ public class FetchTrigger implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        Long mills = System.currentTimeMillis();
         Map context = new HashMap<>();
         context.put("fetchManager", proxyManager);
         Map detail = new HashMap<>();
         detail.put("name", "fetchProxy");
-        quartzService.addJob(FetchJob.class, "fetch", "proxy", "0 */30 * * * ?", context, detail);
+        quartzService.addJob(FetchJob.class, String.format("fetch_%d",mills), "proxy", "0 */30 * * * ?", context, detail);
         detail.put("name", "cleanProxy");
-        quartzService.addJob(CleanJob.class, "clean", "proxy", "0 */10 * * * ?", context, detail);
+        quartzService.addJob(CleanJob.class,  String.format("clean_%d",mills), "proxy", "0 */10 * * * ?", context, detail);
     }
 }

@@ -9,36 +9,35 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * @Title: JiangXianLiProxyFetcher
- * @Description:
+ * @Title: Ip3366ProxyFetcher
+ * @Description: http://www.ip3366.net/free/?stype=1&page=7
  * @author: libo
- * @date: 2021/7/14 0014 1:21
+ * @date: 2021/7/14 0014 1:03
  * @Version: 1.0
  */
 @Slf4j
-public class JiangXianLiProxyFetcher implements ProxyFetcher {
-    private List<String> indexUrlsTpls = Arrays.asList("http://ip.jiangxianli.com/?page=%d");
+public class KuaidailiProxyFetcher implements ProxyFetcher {
+    private List<String> freeUrlsTpls = Arrays.asList("https://www.kuaidaili.com/free/inha/%d/",
+            "https://www.kuaidaili.com/free/intr/%d/");
+
 
     @Override
     public List<ProxyDTO> fetch() {
         List<ProxyDTO> models = Lists.newArrayList();
-        //首页
-        for (String urlTpl : indexUrlsTpls) {
-            for (int i = 1; i <= 100; i++) {
+        for (String urlTpl : freeUrlsTpls) {
+            for (int i = 1; i <= 5000; i++) {
                 String url = String.format(urlTpl, i);
                 int count = 0;
                 Document doc = null;
                 try {
                     doc = Jsoup.connect(url).get();
-                    Elements trs = doc.select("table").select("tbody").select("tr");
+                    Elements trs = doc.select("#list").select("tbody").select("tr");
                     for (Element tr : trs) {
                         models.add(ProxyDTO.builder()
                                 .host(tr.select("td:eq(0)").text())

@@ -6,6 +6,7 @@ import com.lee.tools.proxy.b.api.model.ProxyDTO;
 import com.lee.tools.proxy.b.manager.ProxyValid;
 import com.lee.tools.proxy.b.manager.fetcher.impl.Ip3366ProxyFetcher;
 import com.lee.tools.proxy.b.manager.fetcher.impl.JiangXianLiProxyFetcher;
+import com.lee.tools.proxy.b.manager.fetcher.impl.KuaidailiProxyFetcher;
 import com.lee.tools.proxy.b.manager.fetcher.impl.Six66ProxyFetcher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -39,6 +40,7 @@ public class ProxyManager implements InitializingBean, Serializable {
         list.add(new Six66ProxyFetcher());
         list.add(new Ip3366ProxyFetcher());
         list.add(new JiangXianLiProxyFetcher());
+        list.add(new KuaidailiProxyFetcher());
     }
 
     public void fetch() throws BeansException {
