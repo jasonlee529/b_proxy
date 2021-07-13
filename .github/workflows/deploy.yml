@@ -1,0 +1,65 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        echo "${{ secrets.DC_HOST }}"
+        echo ${{ secrets.DC_HOST }}
+        java -version
+        jps
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8'
+        distribution: 'adopt'
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml -Dmaven.test.skip=true -DskipTests
+    - name: copy jar file via ssh password
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.DC_HOST }}
+        username: ${{ secrets.DC_USERNAME }}
+        password: ${{ secrets.DC_PASSWORD }}
+        port: ${{ secrets.DC_PORT }}
+        source: "start/target/b_proxy.jar"
+        target: "/home/web/b_proxy/github/"
+        strip_components: 2
+    - name: copy sh file via ssh password
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.DC_HOST }}
+        username: ${{ secrets.DC_USERNAME }}
+        password: ${{ secrets.DC_PASSWORD }}
+        port: ${{ secrets.DC_PORT }}
+        source: "restart.sh"
+        target: "/home/web/b_proxy/github/"
+    - name: ssh pipelines
+      uses: cross-the-world/ssh-pipeline@master
+      env:
+        WELCOME: "ssh pipeline"
+      with:
+        host: ${{ secrets.DC_HOST }}
+        user: ${{ secrets.DC_USERNAME }}
+        pass: ${{ secrets.DC_PASSWORD }}
+        port: ${{ secrets.DC_PORT }}
+        connect_timeout: 10s
+        script: |
+            cd /home/web/b_proxy/github
+            pwd
+            source /etc/profile
+            echo "ok"
+            java -version
+            jps
+            sh restart.sh aliyun 8092 &&
