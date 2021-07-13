@@ -17,6 +17,8 @@ jobs:
     - run: |
         echo "${{ secrets.DC_HOST }}"
         echo ${{ secrets.DC_HOST }}
+        java -version
+        jps
     - name: Set up JDK 8
       uses: actions/setup-java@v2
       with:
@@ -54,6 +56,8 @@ jobs:
         port: ${{ secrets.DC_PORT }}
         connect_timeout: 10s
         script: |
+            source /etc/profile
             sh /home/web/b_proxy/github/restart.sh aliyun 8092
             echo "ok"
+            java -v
             jps
