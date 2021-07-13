@@ -55,3 +55,5 @@ jobs:
         connect_timeout: 10s
         script: |
             sh /home/web/b_proxy/github/restart.sh aliyun 8092
+            echo "ok"
+            jps
