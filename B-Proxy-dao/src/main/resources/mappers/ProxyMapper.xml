@@ -259,9 +259,7 @@
             quality,
             `source`,
             valid_date,
-            next_verify_time,
-            gmt_created,
-            gmt_modified,
+            next_verify_time
         </trim>
         values
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -278,8 +276,6 @@
             #{source,jdbcType=VARCHAR},
             #{validDate,jdbcType=TIMESTAMP},
             #{nextVerifyTime,jdbcType=BIGINT},
-            #{gmtCreated,jdbcType=TIMESTAMP},
-            #{gmtModified,jdbcType=TIMESTAMP},
         </trim>
         on duplicate key update
         <trim suffixOverrides=",">
